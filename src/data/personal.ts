@@ -38,5 +38,5 @@ export const socialLinks: SocialLink[] = [
 ]
 
 export const heroBadges = [
-  'React', 'TypeScript', 'Next.js', 'AWS', 'Node.js', 'Svelte',
+  'React', 'React Native', 'Javascript', 'TypeScript', 'Next.js', 'AWS', 'Node.js', 'Svelte',
 ]

@@ -23,7 +23,7 @@ export const experiences: Experience[] = [
   },
   {
     id: 'rupifi-se',
-    role: 'Software Engineer',
+    role: 'Software Engineer (Founding Member)',
     company: 'Rupifi',
     period: 'Apr 2020 \u2014 Mar 2022',
     location: 'Bengaluru, India',
@@ -42,7 +42,7 @@ export const experiences: Experience[] = [
   },
   {
     id: 'varadhi',
-    role: 'Software Engineer',
+    role: 'Software Engineer (Founding Member)',
     company: 'Varadhi Smartek',
     period: 'Jun 2018 \u2014 Mar 2020',
     location: 'Hyderabad, India',

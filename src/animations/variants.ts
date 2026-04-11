@@ -146,3 +146,39 @@ export const mobileMenuSlide: Variants = {
     transition: { duration: 0.2, ease: 'easeIn' },
   },
 }
+
+export const tabContentTransition: Variants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: 'easeOut', staggerChildren: 0.05 },
+  },
+  exit: {
+    opacity: 0,
+    y: -15,
+    transition: { duration: 0.3, ease: 'easeIn' },
+  },
+}
+
+export const cardLiftHover = {
+  hover: {
+    y: -8,
+    boxShadow: '0 0 30px rgba(59, 130, 246, 0.2)',
+    transition: { duration: 0.2 },
+  },
+}
+
+export const badge3DHover = {
+  hover: {
+    rotateX: 10,
+    rotateY: -10,
+    scale: 1.05,
+    transition: { duration: 0.2 },
+  },
+}
+
+export const filterShuffle = {
+  exit: { scale: 0.9, opacity: 0, transition: { duration: 0.2 } },
+  enter: { scale: 1, opacity: 1, transition: { type: 'spring', stiffness: 200, damping: 20 } },
+}
