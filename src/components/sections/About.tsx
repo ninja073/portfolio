@@ -86,6 +86,7 @@ export function About() {
                   WebkitBackgroundSize: "cover",
                 }}
               >
+              <iframe src="https://my.spline.design/xmaskcopycopy-FXdExjl5Ipjw3zw02xiFyb8r-O0B/" frameBorder="0" width="100%" height="100%"></iframe>
                 {/* <span className="text-gradient font-mono text-6xl font-bold">
                   NJ
                 </span> */}
