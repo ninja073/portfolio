@@ -1,16 +1,14 @@
 import { motion } from 'framer-motion'
 import { ChevronDown, ArrowRight, MessageSquare } from 'lucide-react'
-import { useTypewriter } from '@/hooks/useTypewriter'
 import { useScrollTo } from '@/hooks/useScrollTo'
-import { AnimatedBackground } from '@/components/ui/AnimatedBackground'
+import { CanvasParticles } from '@/components/ui/CanvasParticles'
+import { MarqueeText } from '@/components/ui/MarqueeText'
 import { Button } from '@/components/ui/Button'
-import { TechBadge } from '@/components/ui/TechBadge'
-import { heroStagger, heroChild, badgeFloat } from '@/animations/variants'
+import { heroStagger, heroChild } from '@/animations/variants'
 import { personal, heroBadges } from '@/data/personal'
 import { useTheme } from '@/context/useTheme'
 
 export function Hero() {
-  const { displayText } = useTypewriter(personal.name, 80)
   const scrollTo = useScrollTo()
   const { theme } = useTheme()
   const isDark = theme === 'dark'
@@ -18,9 +16,10 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4"
     >
-      <AnimatedBackground />
+      {/* Canvas particle field replaces CSS orbs */}
+      <CanvasParticles />
 
       <motion.div
         className="relative z-10 text-center"
@@ -36,46 +35,23 @@ export function Hero() {
           {personal.greeting}
         </motion.p>
 
-        {/* Name with typewriter */}
+        {/* Name */}
         <motion.h1
           variants={heroChild}
           className="mb-4 font-mono text-4xl font-bold tracking-tight sm:text-5xl md:text-7xl lg:text-8xl"
         >
-          <span className="text-gradient">{displayText}</span>
-          <motion.span
-            className="inline-block w-[3px] align-middle text-electric-blue"
-            animate={{ opacity: [1, 0] }}
-            transition={{ duration: 0.8, repeat: Infinity, repeatType: 'reverse' }}
-            style={{ height: '0.8em', backgroundColor: '#3B82F6', marginLeft: '2px' }}
-          />
+          <span className="text-gradient">{personal.name}</span>
         </motion.h1>
 
         {/* Title */}
         <motion.p
           variants={heroChild}
-          className={`mb-8 text-lg md:text-xl lg:text-2xl ${
+          className={`mb-10 text-lg md:text-xl lg:text-2xl ${
             isDark ? 'text-gray-400' : 'text-gray-600'
           }`}
         >
           {personal.title}
         </motion.p>
-
-        {/* Tech badges */}
-        <motion.div
-          variants={heroChild}
-          className="mb-10 flex flex-wrap justify-center gap-3"
-        >
-          {heroBadges.map((badge, i) => (
-            <motion.div
-              key={badge}
-              variants={badgeFloat(i * 0.1)}
-              className="animate-float"
-              style={{ animationDelay: `${i * 0.5}s` }}
-            >
-              <TechBadge label={badge} size="md" />
-            </motion.div>
-          ))}
-        </motion.div>
 
         {/* CTA Buttons */}
         <motion.div
@@ -99,9 +75,26 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
+      {/* Rolling tech-stack marquee ticker below CTA */}
+      <motion.div
+        className="relative z-10 mt-16 w-full"
+        variants={heroChild}
+        initial="hidden"
+        animate="visible"
+      >
+        <MarqueeText
+          items={heroBadges}
+          speed={22}
+          direction="left"
+          separator="◆"
+          className="hero-marquee"
+          itemClassName={isDark ? 'text-gray-500' : 'text-gray-400'}
+        />
+      </motion.div>
+
       {/* Scroll indicator */}
       <motion.button
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-500"
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-gray-500"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         onClick={() => scrollTo('about')}
